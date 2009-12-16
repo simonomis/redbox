@@ -13,17 +13,15 @@ var RedBox = {
   {
     this.showOverlay();
     Element.show('RB_loading');
-    this.setWindowPosition();
   },
 
   addHiddenContent: function(id)
   {
-    this.removeChildrenFromNode($('RB_window'));
-    this.moveChildren($(id), $('RB_window'));
+    $('RB_window').update($(id).innerHTML);
     Element.hide('RB_loading');
+    this.setWindowPosition();
     new Effect.Appear('RB_window', {duration: 0.4, queue: 'end'});  
     Element.scrollTo('RB_window');
-    this.setWindowPosition();
   },
 
   close: function()
@@ -36,14 +34,16 @@ var RedBox = {
   {
     if ($('RB_redbox'))
     {
-      Element.update('RB_redbox', "");
-      new Insertion.Top($('RB_redbox'), '<div id="RB_window" style="display: none;"></div><div id="RB_overlay" style="display: none;"></div>');  
+      if ($('RB_window').visible)
+      {
+        new Effect.Fade('RB_window', {duration: 0.2});
+      }
     }
     else
     {
       new Insertion.Bottom(document.body, '<div id="RB_redbox" align="center"><div id="RB_window" style="display: none;"></div><div id="RB_overlay" style="display: none;"></div></div>');      
+      new Insertion.Top('RB_overlay', '<div id="RB_loading" style="display: none"></div>');
     }
-    new Insertion.Top('RB_overlay', '<div id="RB_loading" style="display: none"></div>');  
 
     this.setOverlaySize();
     new Effect.Appear('RB_overlay', {duration: 0.4, to: 0.6, queue: 'end'});
