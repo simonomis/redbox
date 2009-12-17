@@ -41,7 +41,7 @@ var RedBox = {
     }
     else
     {
-      new Insertion.Bottom(document.body, '<div id="RB_redbox" align="center"><div id="RB_window" style="display: none;"></div><div id="RB_overlay" style="display: none;"></div></div>');      
+      new Insertion.Bottom(document.body, '<div id="RB_redbox" align="center"><div id="RB_window" style="display: none;"></div><div id="RB_overlay" style="display: none;" onclick="RedBox.close(); return false;"></div></div>');      
       new Insertion.Top('RB_overlay', '<div id="RB_loading" style="display: none"></div>');
     }
 
