@@ -22,6 +22,7 @@ var RedBox = {
     this.setWindowPosition();
     new Effect.Appear('RB_window', {duration: 0.4, queue: 'end'});  
     Element.scrollTo('RB_window');
+	$(id).update(); 
   },
 
   close: function()
